@@ -1,4 +1,7 @@
 ESPlorer
+ESPlorer.Log
+ESPlorer.Log.lck
+
 # Compiled Lua sources
 luac.out
 

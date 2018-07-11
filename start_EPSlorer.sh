@@ -3,4 +3,4 @@
 # hv 1807010.1538
 
 sudo chmod 666 /dev/ttyUSB0
-java -jar "ESPlorer.jar"
+java -jar "ESPlorer/ESPlorer.jar"
