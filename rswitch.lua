@@ -1,18 +1,17 @@
--- lit le switch flash et allume la led bleue
--- zf180710.1606
+-- Programme qui allume la led bleue quand on appuie le bouton flash
+-- hv180711.1125
 
-zledbleue=0  --led blue builting
-zswitch=3  --switch flash
+zledbleue=0 --led bleue 
+zswitch=3--switch flash
 
-gpio.mode(zledbleue, gpio.OUTPUT)
-gpio.mode(zswitch, gpio.INPUT)
+gpio.mode(zswitch, gpio.INT, gpio.PULLUP)
 
-for i=1,10 do
-    print("Hello World "..i)
-    if gpio.read(zswitch) == 1 then
-        gpio.write(zledbleue, gpio.HIGH)
-    else
+function bouton()
+    if gpio.read(zswitch)==0  then
         gpio.write(zledbleue, gpio.LOW)
+    else 
+        gpio.write(zledbleue, gpio.HIGH)
     end
-    tmr.delay(1000000)
 end
+
+gpio.trig(zswitch, "both", bouton)

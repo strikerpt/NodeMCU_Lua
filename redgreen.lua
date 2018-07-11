@@ -6,7 +6,7 @@ zpin2=2--led verte
 gpio.mode(zpin1, gpio.OUTPUT)
 gpio.mode(zpin2,gpio.OUTPUT)
 
- print("toto")
+
 for i=1,10 do
     print("Hello World "..i)
     gpio.write(zpin1, gpio.LOW)
