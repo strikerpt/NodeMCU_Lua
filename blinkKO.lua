@@ -1,4 +1,4 @@
--- blink the blue led builting
+-- Clignoter la led bleue. Vieille méthode, pas le faire
 -- zf180709.2200
 
 zpin=0  --led blue builting

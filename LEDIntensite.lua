@@ -1,4 +1,4 @@
---Programme pour choisir l'intensitée des leds 
+--Programme pour choisir l'intensité des leds 
 --hv20180711.1702
 
 zpin1=1

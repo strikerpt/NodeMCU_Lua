@@ -1,4 +1,4 @@
--- lit le switch flash et allume la led bleue
+-- lit le switch flash et allume la led bleue. Veille méthode, pas le faire
 -- zf180710.1606
 
 zledbleue=0  --led blue builting

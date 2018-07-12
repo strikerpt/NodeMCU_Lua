@@ -1,7 +1,7 @@
--- blink the blue led builting
+-- Clignoter les leds. Vieille méthode. Pas le faire
 -- zf180709.2200
 
-zpin1=1--led rouge builting
+zpin1=1--led rouge 
 zpin2=2--led verte 
 gpio.mode(zpin1, gpio.OUTPUT)
 gpio.mode(zpin2,gpio.OUTPUT)
