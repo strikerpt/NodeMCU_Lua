@@ -1,5 +1,5 @@
 --Petit serveur WEB pour allumer/éteindre une LED en mode client WIFI
---hv20180711.1504
+--hv20180711.1606
 
 print("Démarrage")
 wifi.sta.disconnect()
