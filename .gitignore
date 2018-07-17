@@ -1,6 +1,10 @@
 ESPlorer
 ESPlorer.Log
 ESPlorer.Log.lck
+init.lua.old
+serial
+socket
+sys
 
 # Compiled Lua sources
 luac.out

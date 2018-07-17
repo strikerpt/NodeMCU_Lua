@@ -1,15 +1,13 @@
--- Programme qui fait quelque chose quand on appuie sur le btn flash
--- hv180713.1543
+--Programme qui démarre le robot en appuyant sur le bouton flash et le redémarre si le bouton flash est appuyer pendant 3 secondes
+print("\ninit.lua hv180717.1101\n")
 
 zswitch=3     --switch flash
 gpio.mode(zswitch, gpio.INT, gpio.PULLUP)
 
 function bouton()
-    print("Start robot_1.lua...")
-    dofile("robot_1.lua")
+    print("Start robot_2.lua...")
+    dofile("robot_2.lua")
 end
 
 gpio.trig(zswitch, "both", bouton)
-
-print("\nhvinit 180713.1544\n")
 
