@@ -5,6 +5,7 @@ init.lua.old
 serial
 socket
 sys
+WIFILedOnOff_old.lua
 
 # Compiled Lua sources
 luac.out
