@@ -5,8 +5,8 @@ zswitch=3     --switch flash
 gpio.mode(zswitch, gpio.INT, gpio.PULLUP)
 
 function bouton()
-    print("Start robot_2.lua...")
-    dofile("robot_2.lua")
+    print("Start start_job.lua...")
+    dofile("start_job.lua")
 end
 
 gpio.trig(zswitch, "both", bouton)

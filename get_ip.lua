@@ -1,6 +1,8 @@
 -- get_ip.lua
 -- affiche l'adresse IP
--- zf180715.2347
+-- zf180718.1103
+
+wifi.sta.connect()
 
 tmr.alarm(0, 1000, tmr.ALARM_AUTO , function()
    if wifi.sta.getip() == nil then

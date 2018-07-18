@@ -35,10 +35,6 @@ pwm.start(pin_b_speed)
 pwm.setduty(pin_b_speed,0)
 gpio.mode(pin_b_dir,gpio.OUTPUT)
 
--- timer personnelle
-hvtimer1=tmr.create() 
-hvtimer2=tmr.create()
-
 -- speed is 0 - 100
 function motor(pin_speed, pin_dir, dir, speed)
     gpio.write(pin_dir,dir)
@@ -53,56 +49,14 @@ function motor_b(dir, speed)
     motor(pin_b_speed, pin_b_dir, dir, speed)
 end
 
---Robot avance, s'arrete, tourne à droite, tourne à gauche
 function avance_robot()
-    t=math.random(1,2)
-    --print(t)
-    motor_a(FWD, 60)
-    motor_b(FWD, 60)
-end
+   motor_a(FWD, 60) 
+   motor_b(FWD, 60)
+    
+end 
+
 function stop_robot()
-    motor_a(FWD, 0)
-    motor_b(FWD, 0)
+   motor_a(FWD, 0)
+   motor_b(FWD, 0)
+    
 end
-
-function turn_right_robot()
-    motor_a(FWD, 60)
-    motor_b(REV, 60)
-end
-function turn_left_robot()
-    motor_a(REV, 60)
-    motor_b(FWD, 60)
-end
-
---start pulse10 us
-function zmesure_pulse()
-    gpio.write(ztrig, gpio.HIGH)
-    tmr.delay(10)
-    gpio.write(ztrig, gpio.LOW)
-end
-
--- mesure la distance et il s'arrete si < 20cm
-function zmesure()
-    if gpio.read(zecho)==1 then 
-        ztstart=tmr.now()
-    else
-        ztstop=tmr.now() 
-        zlength=360*(ztstop-ztstart)/2/10000
-        if zlength>200 then zlength=0 end  
-        --print("distance [cm]: "..math.floor(zlength))
-        if zlength<20 then 
-            if t==1 then 
-               turn_left_robot()
-            else 
-               turn_right_robot()
-            end
-            tmr.alarm(hvtimer1, 1000, tmr.ALARM_SINGLE, avance_robot)
-        end
-    end
-end
-
-gpio.trig(zecho, "both", zmesure)
-tmr.alarm(hvtimer2, 1000, tmr.ALARM_AUTO, zmesure_pulse)
-
-
---avance_robot()

@@ -1,4 +1,5 @@
 -- a simple telnet server
+print("\nzf180718.1105\n")
 
 -- restart server if needed
 if telnet_srv ~= nil then
