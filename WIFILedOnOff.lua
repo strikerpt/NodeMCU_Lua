@@ -19,11 +19,7 @@ end)
 zLED=0
 gpio.mode(zLED, gpio.OUTPUT)
 gpio.write(zLED, gpio.HIGH)
-
-
 srv = net.createServer(net.TCP)
-
---srv:close()
 
 
 srv:listen(80, function(conn)
