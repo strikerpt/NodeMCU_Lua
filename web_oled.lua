@@ -11,10 +11,6 @@ tmr.alarm(hvtime, 1000, tmr.ALARM_AUTO , function()
       tmr.stop(hvtime)
    end
 end)
-
-zLED=0
-gpio.mode(zLED, gpio.OUTPUT)
-gpio.write(zLED, gpio.HIGH)
 srv = net.createServer(net.TCP)
 
 srv:listen(80, function(conn)
@@ -25,23 +21,21 @@ srv:listen(80, function(conn)
      _, _, method, path = string.find(request, "([A-Z]+) (.+) HTTP")
     end
     local _GET = {}
+    print("Nouvelle entrée !")
     if (vars ~= nil) then
       for k, v in string.gmatch(vars, "(%w+)=(%w+)&*") do
         _GET[k] = v
+        print(k..": "..v)
       end
     end
-    buf = buf .. "<!DOCTYPE html><html><body><h1>Faire avancer ou arreter le robot</h1></br></br>"
-    local _on, _off = "", ""
-    if (_GET.pin == "Forward") then
-        _on = " selected=true"
-        avance_robot()
-        gpio.write(zLED, gpio.LOW)
-    elseif (_GET.pin == "Backward") then
-        _off = " selected=\"true\""
-        stop_robot()
-        gpio.write(zLED, gpio.HIGH)
-    end
-     buf = buf .. "<a href=\"?pin=Forward\"><button>Forward</button></a> <a href=\"?pin=Backward\"><button>Backward</button></a>"
+
+    buf = buf .. "<!DOCTYPE html><html><body><h1>web_oled</h1></br><form name=\"hform\">"
+
+        if hinput==1 then   
+            print(htext)
+        end
+   
+    buf = buf .. "<textarea name=htext>hello zuzu</textarea> </br> <input name=\"hinput\" type=\"submit\"></input></form></body></html>"
     client:send(buf)
   end)
   conn:on("sent", function(c) c:close() end)
