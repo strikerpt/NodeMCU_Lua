@@ -1,12 +1,12 @@
 --Petit serveur WEB pour allumer/éteindre une LED en mode client WIFI
-print("\nDémarrage hv20180711.1606\n")
+--hv20180711.1606
 
---wifi.sta.disconnect()
---wifi.setmode(wifi.STATION)
---print("set mode=STATION (mode="..wifi.getmode()..")")
---wifi.sta.config{ssid="Hugo", pwd="tototutu"}
-
-wifi.sta.connect()
+print("Démarrage")
+wifi.sta.disconnect()
+wifi.setmode(wifi.STATION)
+print("set mode=STATION (mode="..wifi.getmode()..")")
+wifi.sta.config{ssid="Hugo", pwd="tototutu"}
+ 
 tmr.alarm(0, 1000, tmr.ALARM_AUTO , function()
    if wifi.sta.getip() == nil then
       print("Connecting to AP...")
@@ -20,14 +20,12 @@ zLED=0
 gpio.mode(zLED, gpio.OUTPUT)
 gpio.write(zLED, gpio.HIGH)
 srv = net.createServer(net.TCP)
-
-
 srv:listen(80, function(conn)
   conn:on("receive", function(client, request)
     local buf = ""
     local _, _, method, path, vars = string.find(request, "([A-Z]+) (.+)?(.+) HTTP")
     if (method == nil) then
-     _, _, method, path = string.find(request, "([A-Z]+) (.+) HTTP")
+      _, _, method, path = string.find(request, "([A-Z]+) (.+) HTTP")
     end
     local _GET = {}
     if (vars ~= nil) then
@@ -35,7 +33,7 @@ srv:listen(80, function(conn)
         _GET[k] = v
       end
     end
-    buf = buf .. "<!DOCTYPE html><html><body><h1>Hello, this is NodeMCU.</h1>Turn PIN : </br></br>"
+    buf = buf .. "<!DOCTYPE html><html><body><h1>Hello, this is NodeMCU.</h1><form src=\"/\">Turn PIN <select name=\"pin\" onchange=\"form.submit()\">"
     local _on, _off = "", ""
     if (_GET.pin == "ON") then
       _on = " selected=true"
@@ -44,9 +42,8 @@ srv:listen(80, function(conn)
       _off = " selected=\"true\""
       gpio.write(zLED, gpio.HIGH)
     end
-     buf = buf .. "<a href=\"?pin=ON\"><button>ON</button></a> <a href=\"?pin=OFF\"><button>OFF</button></a>"
+    buf = buf .. "<option" .. _on .. ">ON</option><option" .. _off .. ">OFF</option></select></form></body></html>"
     client:send(buf)
   end)
   conn:on("sent", function(c) c:close() end)
 end)
-
