@@ -21,9 +21,10 @@ srv:listen(80, function(conn)
      _, _, method, path = string.find(request, "([A-Z]+) (.+) HTTP")
     end
     local _GET = {}
-    print("Nouvelle entrée !")
+    print("\nNouvelle entrée !")
     if (vars ~= nil) then
-      for k, v in string.gmatch(vars, "(%w+)=(%w+)&*") do
+      print("Input: "..vars)
+      for k, v in string.gmatch(vars, "(%w+)=([%w+-@%%]+)&*") do 
         _GET[k] = v
         print(k..": "..v)
       end
@@ -31,13 +32,44 @@ srv:listen(80, function(conn)
 
     buf = buf .. "<!DOCTYPE html><html><body><h1>web_oled</h1></br><form name=\"hform\">"
 
-        if hinput==1 then   
-            print(htext)
+        if  _GET.hinput=="Valider" then   
+            print((string.gsub(unescape(_GET.htext),"+"," ")))
         end
    
-    buf = buf .. "<textarea name=htext>hello zuzu</textarea> </br> <input name=\"hinput\" type=\"submit\"></input></form></body></html>"
+    buf = buf .. "<textarea name=\"htext\">hello zuzu</textarea> </br> <input name=\"hinput\" type=\"submit\"></input></form></body></html>"
     client:send(buf)
   end)
   conn:on("sent", function(c) c:close() end)
 end)
 
+
+--source: https://github.com/diegonehab/luasocket/blob/master/src/url.lua
+function unescape(s)
+    return (string.gsub(s, "%%(%x%x)", function(hex)
+        return string.char(tonumber(hex, 16))
+    end))
+end
+
+--[[
+--t1="hello+zuzu+%26+une+belle+%E9cole"
+t1="hello+zuzu+%26+une+belle+%E9cole%5Cnun+b%E2teau"
+
+print(string.char(tostring(tonumber("3F", 16))))
+print(string.char(63))
+print(unescape("%26"))
+t3=string.gsub(unescape(t1),"+"," ")
+print(t3)
+t2="école\ntoto"
+print(t2)
+
+]]
+
+--print( string.gsub("hello+zuzu+%26+une+belle+%E9cole%5Cun+b%E2teau","+"," ")
+
+--[[ source OLED: 
+https://www.google.ch/search?q=nodemcu+lua+oled+display&source=lnms&tbm=isch&sa=X&ved=0ahUKEwjG8ba8ra3cAhVDCpoKHedlDS4Q_AUICigB&biw=1536&bih=828
+https://www.hackster.io/kayakpete/esp8266-oled-display-52ae50
+http://blog.rl.cx/2017/01/08/bien-d%C3%A9buter-avec-nodemcu/
+https://github.com/FredThx/nodemcu_iot/blob/master/i2c_display.lua
+https://www.instructables.com/id/NODEMCU-LUA-ESP8266-With-I2C-LCD-128-X-64-OLED-Dis/
+]]
