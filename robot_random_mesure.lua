@@ -105,4 +105,4 @@ gpio.trig(zecho, "both", zmesure)
 tmr.alarm(hvtimer2, 1000, tmr.ALARM_AUTO, zmesure_pulse)
 
 
---avance_robot()
+avance_robot()
