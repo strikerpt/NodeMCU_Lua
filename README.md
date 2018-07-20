@@ -3,7 +3,7 @@ Petit dossier avec des programmes pour aprendre à coder sur un NodeMCU en lua.
 
 ### Faire clignoter une ou plusieurs leds
 1.led_blink_1.lua<br>
-2.led_blink_2.lua.lua
+2.led_blink_2.lua
 
 ### Modifier l'intensité d'une ou plusieurs leds
 1.led_intensite.lua<br>
