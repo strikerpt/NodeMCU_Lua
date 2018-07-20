@@ -18,7 +18,7 @@ Petit dossier avec des programmes pour aprendre à coder sur un NodeMCU en lua.
 
 ### Robot qui tourne de manière aléatoire et qui mesure la distance en cm
 1.robot_avance_arrete.lua<br>
-2.robot_mesure.lua<br>
+2.robot_mesure_turn_right.lua<br>
 3.robot_random_mesure.lua
 
 ### Utilitaires 
