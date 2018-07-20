@@ -88,7 +88,13 @@ function zmesure()
     else
         ztstop=tmr.now() 
         zlength=360*(ztstop-ztstart)/2/10000
-        if zlength>200 then zlength=0 end  
+        
+            if zlength>200 then zlength=0 end 
+            if zlength<20 then 
+            turn_right_robot() 
+            tmr.alarm(hvtimer1, 1000, tmr.ALARM_SINGLE, avance_robot) 
+            end
+
         print("distance [cm]: "..math.floor(zlength))
     end
 end
