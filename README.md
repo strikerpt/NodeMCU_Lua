@@ -1,5 +1,5 @@
 # NodeMCU_Lua
-Petit dossier avec des programmes pour aprendre à coder sur un NodeMCU en lua.
+Petit dossier avec des programmes pour apprendre à coder sur un NodeMCU en lua.
 
 ### Faire clignoter une ou plusieurs leds
 1.led_blink_1.lua<br>
@@ -9,7 +9,7 @@ Petit dossier avec des programmes pour aprendre à coder sur un NodeMCU en lua.
 1.led_intensite.lua<br>
 2.led_intensite_variable.lua
 
-### Allumer une led en pressant un bouton
+### Allumer une led, en pressant un bouton
 1.led_press_button.lua
 
 ### Connecter le NodeMCU à un réseau WIFI et créer un serveur web pour contrôler une led
