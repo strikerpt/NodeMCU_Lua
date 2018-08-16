@@ -46,4 +46,3 @@ srv:listen(80, function(conn)
   end)
   conn:on("sent", function(c) c:close() end)
 end)
-

@@ -50,22 +50,6 @@ function unescape(s)
     end))
 end
 
---[[
---t1="hello+zuzu+%26+une+belle+%E9cole"
-t1="hello+zuzu+%26+une+belle+%E9cole%5Cnun+b%E2teau"
-
-print(string.char(tostring(tonumber("3F", 16))))
-print(string.char(63))
-print(unescape("%26"))
-t3=string.gsub(unescape(t1),"+"," ")
-print(t3)
-t2="école\ntoto"
-print(t2)
-
-]]
-
---print( string.gsub("hello+zuzu+%26+une+belle+%E9cole%5Cun+b%E2teau","+"," ")
-
 --[[ source OLED: 
 https://www.google.ch/search?q=nodemcu+lua+oled+display&source=lnms&tbm=isch&sa=X&ved=0ahUKEwjG8ba8ra3cAhVDCpoKHedlDS4Q_AUICigB&biw=1536&bih=828
 https://www.hackster.io/kayakpete/esp8266-oled-display-52ae50
