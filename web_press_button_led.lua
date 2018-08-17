@@ -1,11 +1,5 @@
 --Petit serveur WEB pour allumer/éteindre une LED en mode client WIFI
 print("\nDémarrage hv20180711.1606\n")
-
---wifi.sta.disconnect()
---wifi.setmode(wifi.STATION)
---print("set mode=STATION (mode="..wifi.getmode()..")")
---wifi.sta.config{ssid="Hugo", pwd="tototutu"}
-
 wifi.sta.connect()
 tmr.alarm(0, 1000, tmr.ALARM_AUTO , function()
    if wifi.sta.getip() == nil then
@@ -15,13 +9,10 @@ tmr.alarm(0, 1000, tmr.ALARM_AUTO , function()
       tmr.stop(0)
    end
 end)
-
 zLED=0
 gpio.mode(zLED, gpio.OUTPUT)
 gpio.write(zLED, gpio.HIGH)
 srv = net.createServer(net.TCP)
-
-
 srv:listen(80, function(conn)
   conn:on("receive", function(client, request)
     local buf = ""

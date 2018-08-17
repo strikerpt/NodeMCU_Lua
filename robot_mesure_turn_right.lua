@@ -56,7 +56,6 @@ end
 --Robot avance, s'arrete, tourne à droite, tourne à gauche
 function avance_robot()
     t=math.random(1,2)
-    --print(t)
     motor_a(FWD, 60)
     motor_b(FWD, 60)
 end
@@ -94,7 +93,6 @@ function zmesure()
             turn_right_robot() 
             tmr.alarm(hvtimer1, 1000, tmr.ALARM_SINGLE, avance_robot) 
             end
-
         print("distance [cm]: "..math.floor(zlength))
     end
 end
