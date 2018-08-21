@@ -1,7 +1,9 @@
--- programme pour faire clignoter un LED
---hv20180711.1007
+-- programme pour faire clignoter la LED sur le NodeMCU
 
-zpin=1
+print("\nled_blink1.lua   hv180820.1107  \n")
+
+
+zpin=0
 valeur=gpio.HIGH
 duration = 300    --> en ms
 

@@ -1,6 +1,3 @@
---Programme pour faire tourner aleatoirement le robot à droite ou à gauche tant qu'il soit à moins de 20cm de l'obstacle
---hv20180717.1613
-
 --parametres pour le module ultra son 
 ztrig=5
 zecho=6

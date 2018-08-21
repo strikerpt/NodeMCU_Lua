@@ -1,7 +1,10 @@
---start job. Démarre le robot et le serveur web
-print("\nstart job hv180718.1155\n")
-
-dofile("web_robot_on_off.lua")
-dofile("robot_random_mesure.lua")
+print("\nU_start_job.lua hv180820.1705\n")
 
 
+dofile("wifi_client.lua")
+dofile("robot_oled.lua")
+dofile("test_web3_controller.lua")
+
+
+
+--dofile("robot_pulse_mesure_random.lua")

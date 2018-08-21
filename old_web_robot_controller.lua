@@ -1,4 +1,5 @@
-print("\nDémarrage hv20180711.1606\n")
+print("\nDémarrage hv20180817.1605\n")
+
 hvtimer1=tmr.create()
 hvtimer2=tmr.create()
 hvtimer3=tmr.create()
@@ -6,9 +7,11 @@ hvtimer4=tmr.create()
 hvtimer5=tmr.create()
 hvtimer6=tmr.create()
 hvtimer7=tmr.create()
+
 pin_sda = 12 
 pin_scl = 11 
 disp_sla = 0x3c
+
 ztrig=5
 zecho=6
 ztstart=0
@@ -16,6 +19,7 @@ ztstop=0
 gpio.mode(ztrig, gpio.OUTPUT)
 gpio.write(ztrig, gpio.LOW)
 gpio.mode(zecho, gpio.INT, gpio.PULLUP)
+
 pin_a_speed = 1
 pin_a_dir = 3
 pin_b_speed = 2
@@ -23,6 +27,7 @@ pin_b_dir = 4
 FWD = gpio.LOW
 REV = gpio.HIGH
 duty = 1023
+
 gpio.mode(pin_a_speed,gpio.OUTPUT)
 gpio.write(pin_a_speed,gpio.LOW)
 pwm.setup(pin_a_speed,1000,duty)
@@ -35,6 +40,7 @@ pwm.setup(pin_b_speed,1000,duty)
 pwm.start(pin_b_speed)
 pwm.setduty(pin_b_speed,0)
 gpio.mode(pin_b_dir,gpio.OUTPUT)
+
 function motor(pin_speed, pin_dir, dir, speed)
     gpio.write(pin_dir,dir)
     pwm.setduty(pin_speed, (speed * duty) / 100)
@@ -45,14 +51,16 @@ end
 function motor_b(dir, speed)
     motor(pin_b_speed, pin_b_dir, dir, speed)
 end
+
 function init_OLED(sda, scl)
      i2c.setup(0, sda, scl, i2c.SLOW)
      disp = u8g.ssd1306_128x64_i2c(disp_sla)
      disp:setFont(u8g.font_6x10)
      disp:setFontRefHeightExtendedText()
-     disp:setDefaultForegroundColor()
+     disp:setDefaultForegroundlColor()
      disp:setFontPosTop()
 end
+
 function forward()
    t=math.random(1,2)
    motor_a(FWD, 60) 
@@ -183,11 +191,11 @@ srv:listen(80, function(conn)
       _stop = " selected=\"true\""
       stop()
     end
-    buf = buf .. "<!DOCTYPE html> <html> <body> <h1>Controler le robot : </h1> </br> <a href=\"?pin=FORWARD\"> <button id=\"buttonforward\"> FORWARD </button> </a> </br>" 
-    buf = buf .. "<a href=\"?pin=LEFT\"> <button id=\"buttonleft\"> LEFT </button> </a> <a href=\"?pin=STOP\"> <button id=\"buttonstop\"> STOP </button> </a> <a href=\"?pin=RIGHT\"> <button id=\"buttonright\"> RIGHT </button> </a> </br>" 
-    buf = buf .. "<a href=\"?pin=BACKWARD\"> <button id=\"buttonbackward\"> BACKWARD </button> </a>" 
-    buf = buf .. "<style> #buttonforward {position:relative; left:500px; height:100px; width:100px;} #buttonbackward {position:relative; left:500px; height:100px; width:100px;} </style>" 
-    buf = buf .. "<style> #buttonleft {position:relative; left:400px; height:100px; width:100px;} #buttonright {position:relative; left:400px; height:100px; width:100px;} #buttonstop {position:relative; left:400px; height:100px; width:100px;} </style>"
+    buf = buf .. "<!DOCTYPE html><html><body><h1>Controler le robot : </h1></br> <a href=\"?pin=FORWARD\"><button id=\"buttonforward\">FORWARD</button></a></br>"
+    buf = buf .. "<a href=\"?pin=LEFT\"><button id=\"buttonleft\">LEFT</button></a><a href=\"?pin=STOP\"><button id=\"buttonstop\">STOP</button></a><a href=\"?pin=RIGHT\"><button id=\"buttonright\">RIGHT</button></a></br>"
+    buf = buf .. "<a href=\"?pin=BACKWARD\"><button id=\"buttonbackward\">BACKWARD</button></a>"
+    buf = buf .. "<style> #buttonforward {position:relative; left:500px; height:100px; width:100px;} #buttonbackward {position:relative; left:500px; height:100px; width:100px;}</style>"
+    buf = buf .. "<style> #buttonleft {position:relative; left:400px; height:100px; width:100px;} #buttonright {position:relative; left:400px; height:100px; width:100px;} #buttonstop {position:relative; left:400px; height:100px; width:100px;}</style> "   
     client:send(buf)
   end)
   conn:on("sent", function(c) c:close() end)

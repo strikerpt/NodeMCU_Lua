@@ -56,7 +56,6 @@ function init_OLED(sda, scl) --Set up the u8glib lib
      disp:setDefaultForegroundColor()
      disp:setFontPosTop()
 end
-
 function forward()
    motor_a(FWD, 60) 
    motor_b(FWD, 60)
@@ -125,12 +124,10 @@ srv:listen(80, function(conn)
       _left = " selected=true"
       left()
       tmr.alarm(hvtimer4, 1000, tmr.ALARM_SINGLE, forward)
-      end
     elseif (_GET.pin == "BACKWARD") then
       _backward = " selected=\"true\""
       backward()
       tmr.alarm(hvtimer6, 1500, tmr.ALARM_SINGLE, right)
-      tmr.stop(hvtimer6)
       forward()
     end
     buf = buf .. "<!DOCTYPE html><html><body><h1>Controler le robot : </h1></br> <a href=\"?pin=FORWARD\"><button id=\"buttonforward\">FORWARD</button></a></br>"
