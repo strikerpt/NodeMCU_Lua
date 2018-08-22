@@ -1,5 +1,5 @@
 -- a simple telnet server
-print("\n telnet_srv.lua  zf180718.1105 \n")
+print("\ntelnet_srv.lua   zf180724.2241   \n")
 
 -- restart server if needed
 if telnet_srv ~= nil then
@@ -40,4 +40,5 @@ telnet_srv:listen(23, function(socket)
     print("Welcome to NodeMCU world.")
 end)
 
-print("Telnet server running...")
+print("Telnet server running...\nUsage: telnet -r ip\n")
+--dofile("get_ip.lua")

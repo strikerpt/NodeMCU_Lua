@@ -1,4 +1,4 @@
-print("\n robot_oled.lua   hv180821.1702  \n")
+print("\n disp_oled.lua   hv180822.1051  \n")
 
 --parametres pour l'oled
 pin_sda = 12 
@@ -75,3 +75,16 @@ function displaystop()
         draw()
     until disp:nextPage() == false 
 end
+
+
+function displayclear()
+    effacer OLED
+end
+
+function displayreset()
+    displayclear()
+    afficher reset
+end
+
+
+
