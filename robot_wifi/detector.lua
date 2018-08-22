@@ -30,7 +30,7 @@ function zmesure()
         zlength=360*(ztstop-ztstart)/2/10000
         if zlength>200 then zlength=0 end  
         if zlength<20 then 
-        print(t)
+        t=math.random(1,2)
             if t==1 then 
                left()
             else 
@@ -42,7 +42,6 @@ function zmesure()
 end
 gpio.trig(zecho,"both",zmesure)
 tmr.alarm(hvtimer2, 1000, tmr.ALARM_AUTO, zmesure_pulse)
-
 
 
 function right()
