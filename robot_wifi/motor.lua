@@ -1,4 +1,4 @@
-print("\nmotor.lua   hv180822.0902\n")
+print("\n motor.lua   hv180822.0902\n")
 
 --timers personnels
 hvtimer1=tmr.create()
