@@ -42,20 +42,3 @@ function zmesure()
 end
 gpio.trig(zecho,"both",zmesure)
 tmr.alarm(hvtimer2, 1000, tmr.ALARM_AUTO, zmesure_pulse)
-
-
-function right()
-    print("right")
-end
-
-
-function left()
-    print("left")
-end
-
-function forward()
-    print("forward")
-end
-
-
-
