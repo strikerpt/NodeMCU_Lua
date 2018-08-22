@@ -21,7 +21,7 @@ end
 
 function disp_OLED(hvx, hvy, htext)
     print("coucou."..htext..".")
---    disp:firstPage()
+    disp:firstPage()
     repeat
         draw(hvx, hvy, htext)
     until disp:nextPage() == false
@@ -29,11 +29,15 @@ end
 
 
 init_OLED(pin_sda, pin_scl) --Run setting up
---disp_OLED(0,15, "toto")
-disp_OLED(10,15, "tutu")
 
+oledtimer1=tmr.create()
+oledtimer2=tmr.create()
 
+tmr.alarm(oledtimer1, 1000, tmr.ALARM_SINGLE, function()
+    disp_OLED(0,15, "toto")
+end)
 
-init_OLED(pin_sda, pin_scl)
-
+tmr.alarm(oledtimer2, 2000, tmr.ALARM_SINGLE, function()
+disp_OLED(0,25, "tutu")
+end)
 
