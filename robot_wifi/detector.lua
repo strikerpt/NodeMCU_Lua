@@ -1,7 +1,19 @@
+print("\n detector.lua  hv180822.0918  \n")
+
 -- timers personnelles
 hvtimer1=tmr.create() 
 hvtimer2=tmr.create()
+
+--Parametres pour le module ultra son 
+ztrig=5
+zecho=6
+ztstart=0
+ztstop=0
+gpio.mode(ztrig, gpio.OUTPUT)
+gpio.write(ztrig, gpio.LOW)
+gpio.mode(zecho, gpio.INT, gpio.PULLUP)
 t=math.random(1,2)
+
 --Function pour faire envoyer le pulse
 function zmesure_pulse()
     gpio.write(ztrig, gpio.HIGH)
@@ -18,6 +30,7 @@ function zmesure()
         zlength=360*(ztstop-ztstart)/2/10000
         if zlength>200 then zlength=0 end  
         if zlength<20 then 
+        print(t)
             if t==1 then 
                left()
             else 
@@ -27,5 +40,23 @@ function zmesure()
         end
     end
 end
-gpio.trig(zecho, "both", zmesure)
+gpio.trig(zecho,"both",zmesure)
 tmr.alarm(hvtimer2, 1000, tmr.ALARM_AUTO, zmesure_pulse)
+
+
+
+function right()
+    print("right")
+end
+
+
+function left()
+    print("left")
+end
+
+function forward()
+    print("forward")
+end
+
+
+

@@ -1,14 +1,6 @@
 -- petit script de serveur Wifi pour piloter le robot
 
-print("\ntest_web3_controller.lua   hv180821.1433  \n")
-
-
---Timers personnelles 
-hvtimer3=tmr.create()
-hvtimer4=tmr.create()
-hvtimer5=tmr.create()
-hvtimer6=tmr.create()
-hvtimer7=tmr.create()
+print("\n robot_web.lua   hv180822.0912  \n")
 
 srv = net.createServer(net.TCP)
 srv:listen(80, function(conn)
@@ -25,37 +17,18 @@ srv:listen(80, function(conn)
         print(k..": "..v)
       end
     end
-    
+
 --Réaction des boutons 
     if (_GET.pin == "LEFT") then
-      left()
---      print("left")
---      tmr.alarm(hvtimer4, 1000, tmr.ALARM_SINGLE, forward)
+        left()
     elseif (_GET.pin == "RIGHT") then
-      right()
---      print("right")
---      tmr.alarm(hvtimer5, 1000, tmr.ALARM_SINGLE, forward)
-    elseif (_GET.pin == "FORWARD") then
-        --tmr.alarm(hvtimer5, 1000, tmr.ALARM_SINGLE, forward)
-     hvtimerstart1=tmr.now()
-      forward()
-     hvtimerstop1=tmr.now()
-     hvtimerdif1=(hvtimerstop1-hvtimerstart1)
-     print(hvtimerdif1)
---      print("forward")
+        right()
+    elseif (_GET.pin == "FORWARD") then 
+        forward()
     elseif (_GET.pin == "BACKWARD") then
-      backward()
---      print("backward")
---      tmr.alarm(hvtimer6, 1000, tmr.ALARM_SINGLE, right)
---      tmr.alarm(hvtimer7, 2000, tmr.ALARM_SINGLE, forward)
-      elseif (_GET.pin == "STOP") then
-        --tmr.alarm(hvtimer5, 1000, tmr.ALARM_SINGLE, stop)
-        hvtimerstart2=tmr.now()
+        backward()
+    elseif (_GET.pin == "STOP") then
         stop()
-        hvtimerstop2=tmr.now()
-        hvtimerdif2=(hvtimerstop2-hvtimerstart2)
-        print(hvtimerdif2)
---      print("stop")
     end
     
 --Partie HTML et CSS pour la page web
