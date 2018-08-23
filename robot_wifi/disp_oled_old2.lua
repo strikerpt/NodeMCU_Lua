@@ -42,7 +42,7 @@ end
 
 
 function ip()
-   disp:setFont(u8g.font_6x10)
+   disp:setFont(u8g.font_10x20)
    disp:getFontAscent()
    disp:setFontPosCenter()
    disp:drawStr(20,20,wifi.sta.getip())
@@ -74,7 +74,7 @@ end
 
     
 function displayleft()
-    disp:setFont(u8g.font_6x10)
+    disp:setFont(u8g.font_10x20)
     disp:getFontAscent()
     disp:setFontPosCenter()
     disp:drawStr(50,32,"LEFT")

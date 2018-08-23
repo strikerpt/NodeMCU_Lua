@@ -75,16 +75,3 @@ function displaystop()
         draw()
     until disp:nextPage() == false 
 end
-
-
-function displayclear()
-    effacer OLED
-end
-
-function displayreset()
-    displayclear()
-    afficher reset
-end
-
-
-

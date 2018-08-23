@@ -1,43 +1,43 @@
--- Petit script pour afficher des chose sur le display OLED ssd1306_128x64_i2c
-print("\n disp_oled.lua   hv180822.1638  \n")
+-- Source: https://wiki.wemos.cc/products:d1_mini_shields:oled_shield
+-- font_10x20,font_6x10,font_7x13,font_8x13,font_9x15,font_chikita
+print("\n display_oled.lua   hv20180723.1332   \n")
 
---parametres pour l'oled
 pin_sda = 12 
 pin_scl = 11 
 disp_sla = 0x3c
 
-function init_OLED(sda, scl) --Set up the u8glib lib     
+
+function init_OLED(sda, scl)    
      i2c.setup(0, sda, scl, i2c.SLOW)
      disp = u8g.ssd1306_128x64_i2c(disp_sla)
+     disp:setFont(u8g.font_6x10)
      disp:setFontRefHeightExtendedText()
      disp:setDefaultForegroundColor()
+     disp:setFontPosTop()
 end
 
-function draw(hvx, hvy, htext)
-    disp:setFont(u8g.font_6x10)
-    disp:setFontPosTop()
-    disp:drawStr(hvx, hvy, htext)
+function draw()
+    disp:drawStr(0,0,oledline1)
+    disp:drawStr(0,14,oledline2)
+    disp:drawStr(0,28,oledline3)
+    disp:drawStr(0,42,oledline4)
+    disp:drawStr(0,70,oledline5)
 end
 
-function disp_OLED(hvx, hvy, htext)
-    print("coucou."..htext..".")
+function dispOLED()
     disp:firstPage()
     repeat
-        draw(hvx, hvy, htext)
+        draw()
     until disp:nextPage() == false
 end
 
-
 init_OLED(pin_sda, pin_scl) --Run setting up
 
-oledtimer1=tmr.create()
-oledtimer2=tmr.create()
+oledline1=     wifi.sta.getip()
+oledline2=""
+oledline3=""
+oledline4="1133"
+oledline5=""
 
-tmr.alarm(oledtimer1, 1000, tmr.ALARM_SINGLE, function()
-    disp_OLED(0,15, "toto")
-end)
-
-tmr.alarm(oledtimer2, 2000, tmr.ALARM_SINGLE, function()
-disp_OLED(0,25, "tutu")
-end)
+dispOLED()
 

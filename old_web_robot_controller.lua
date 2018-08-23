@@ -8,9 +8,9 @@ hvtimer5=tmr.create()
 hvtimer6=tmr.create()
 hvtimer7=tmr.create()
 
-pin_sda = 12 
+--[[pin_sda = 12 
 pin_scl = 11 
-disp_sla = 0x3c
+disp_sla = 0x3c]]
 
 ztrig=5
 zecho=6
@@ -52,82 +52,81 @@ function motor_b(dir, speed)
     motor(pin_b_speed, pin_b_dir, dir, speed)
 end
 
-function init_OLED(sda, scl)
+--[[function init_OLED(sda, scl)
      i2c.setup(0, sda, scl, i2c.SLOW)
      disp = u8g.ssd1306_128x64_i2c(disp_sla)
      disp:setFont(u8g.font_6x10)
      disp:setFontRefHeightExtendedText()
      disp:setDefaultForegroundlColor()
      disp:setFontPosTop()
-end
+end]]
 
 function forward()
-   t=math.random(1,2)
    motor_a(FWD, 60) 
    motor_b(FWD, 60)
-   function draw()
+ --[[ function draw()
         disp:drawStr(40,32,"FORWARD")
     end
     init_OLED(pin_sda, pin_scl) --Run setting up
     disp:firstPage()
     repeat
         draw()
-    until disp:nextPage() == false 
+    until disp:nextPage() == false]] 
 end 
 function stop()
    motor_a(FWD, 0)
    motor_b(FWD, 0)
-   function draw()
+   --[[function draw()
         disp:drawStr(55,32,"STOP")
     end
     init_OLED(pin_sda, pin_scl)
     disp:firstPage()
     repeat
         draw()
-    until disp:nextPage() == false   
+    until disp:nextPage() == false]]   
 end
 function right()
     motor_a(FWD, 60)
     motor_b(REV, 60)
-    function draw()
+    --[[function draw()
         disp:drawStr(55,32,"RIGHT")
     end
     init_OLED(pin_sda, pin_scl)
     disp:firstPage()
     repeat
         draw()
-    until disp:nextPage() == false
+    until disp:nextPage() == false]]
 end
 function left()
     motor_a(REV, 60)
     motor_b(FWD, 60)
-    function draw()
+    --[[function draw()
         disp:drawStr(55,32,"LEFT")
     end
     init_OLED(pin_sda, pin_scl)
     disp:firstPage()
     repeat
         draw()
-    until disp:nextPage() == false
+    until disp:nextPage() == false]]
 end
 function backward()
     motor_a(REV, 60)
     motor_b(REV, 60)
-    function draw()
+    --[[function draw()
         disp:drawStr(40,32,"BACKWARD")
     end
     init_OLED(pin_sda, pin_scl)
     disp:firstPage()
     repeat
         draw()
-    until disp:nextPage() == false 
+    until disp:nextPage() == false ]]
 end
-function zmesure_pulse()
+--[[function zmesure_pulse()
     gpio.write(ztrig, gpio.HIGH)
     tmr.delay(10)
     gpio.write(ztrig, gpio.LOW)
-end
-function zmesure()
+end]]
+--[[function zmesure()
     if gpio.read(zecho)==1 then 
         ztstart=tmr.now()
     else
@@ -135,6 +134,7 @@ function zmesure()
         zlength=360*(ztstop-ztstart)/2/10000
         if zlength>200 then zlength=0 end  
         if zlength<20 then 
+            t=math.random(1,2)
             if t==1 then 
                left()
             else 
@@ -200,3 +200,4 @@ srv:listen(80, function(conn)
   end)
   conn:on("sent", function(c) c:close() end)
 end)
+]]

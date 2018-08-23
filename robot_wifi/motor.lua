@@ -40,13 +40,13 @@ function forward()
     gpio.write(pin_b_dir,FWD)
     pwm.setduty(pin_a_speed,(70 * duty) / 100)
     pwm.setduty(pin_b_speed,(70 * duty) / 100)
-    displayforward()
+    --displayforward()
 end
 
 function stop()
     pwm.setduty(pin_a_speed,0)
     pwm.setduty(pin_b_speed,0)
-    displaystop()
+    --displaystop()
 end
 
 function right()
@@ -55,7 +55,7 @@ function right()
     pwm.setduty(pin_a_speed,(70 * duty) / 100)
     pwm.setduty(pin_b_speed,(70 * duty) / 100)
     tmr.alarm(hvtimer1, 1000, tmr.ALARM_SINGLE, forward)
-    displayright()
+    --displayright()
 end
 
 function left()
@@ -64,7 +64,7 @@ function left()
     pwm.setduty(pin_a_speed,(70 * duty) / 100)
     pwm.setduty(pin_b_speed,(70 * duty) / 100)
     tmr.alarm(hvtimer2, 1000, tmr.ALARM_SINGLE, forward)
-    displayleft()
+    --displayleft()
 end
 
 function backward()
@@ -74,7 +74,6 @@ function backward()
     pwm.setduty(pin_b_speed,(70 * duty) / 100)
     tmr.alarm(hvtimer3, 1000, tmr.ALARM_SINGLE, right)
     tmr.alarm(hvtimer4, 2000, tmr.ALARM_SINGLE, forward)
-    displaybackward()
-    end
-
+    --displaybackward()
+end
 

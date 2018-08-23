@@ -32,9 +32,12 @@ srv:listen(80, function(conn)
     end
     
 --Partie HTML et CSS pour la page web
-    buf = buf .. "<!DOCTYPE html><html><body><h1>Controler le robot : </h1></br> <a href=\"?pin=FORWARD\"><button id=\"buttonforward\">FORWARD</button></a></br>"
+    buf = buf .. "<!DOCTYPE html><html><body><meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">" 
+    buf = buf .. "<h1>Controler le robot : </h1></br> <a href=\"?pin=FORWARD\"><button id=\"buttonforward\">FORWARD</button></a></br>"
     buf = buf .. "<a href=\"?pin=LEFT\"><button id=\"buttonleft\">LEFT</button></a><a href=\"?pin=STOP\"><button id=\"buttonstop\">STOP</button></a><a href=\"?pin=RIGHT\"><button id=\"buttonright\">RIGHT</button></a></br>"
-    buf = buf .. "<a href=\"?pin=BACKWARD\"><button id=\"buttonbackward\">BACKWARD</button></a>"
+    buf = buf .. "<a href=\"?pin=BACKWARD\"><button id=\"buttonbackward\">BACKWARD</button></a></br></br>"
+    buf = buf .. "<h1> Vitesse : </h1> </br> <a href=\"?pin=LENT\"><button id=\"buttonlent\"> L </button> </a>" 
+    buf = buf .. "<a href=\"?pin=MOYEN\"><button id=\"buttonmoyen\"> M </button></a> <a href=\"?pin=VITE\"><button id=\"buttonvite\"> V </button></a>" 
     buf = buf .. "<style> #buttonforward, #buttonbackward {position:relative; left:100px; height:100px; width:100px;} </style>"
     buf = buf .. "<style> #buttonleft, #buttonright, #buttonstop {position:relative; height:100px; width:100px;} </style> "   
     client:send(buf)
