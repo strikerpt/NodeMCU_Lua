@@ -38,8 +38,8 @@ gpio.write(pin_b_dir,FWD)
 function forward()
     gpio.write(pin_a_dir,FWD)
     gpio.write(pin_b_dir,FWD)
-    pwm.setduty(pin_a_speed,(70 * duty) / 100)
-    pwm.setduty(pin_b_speed,(70 * duty) / 100)
+    pwm.setduty(pin_a_speed,(zpeed * duty) / 100)
+    pwm.setduty(pin_b_speed,(zpeed * duty) / 100)
     --draw()
 end
 
@@ -52,8 +52,8 @@ end
 function right()
     gpio.write(pin_a_dir,FWD)
     gpio.write(pin_b_dir,REV)
-    pwm.setduty(pin_a_speed,(70 * duty) / 100)
-    pwm.setduty(pin_b_speed,(70 * duty) / 100)
+    pwm.setduty(pin_a_speed,(zpeed * duty) / 100)
+    pwm.setduty(pin_b_speed,(zpeed * duty) / 100)
     tmr.alarm(hvtimer1, 1000, tmr.ALARM_SINGLE, forward)
     --oledline3="RIGHT"
 end
@@ -61,8 +61,8 @@ end
 function left()
     gpio.write(pin_a_dir,REV)
     gpio.write(pin_b_dir,FWD)
-    pwm.setduty(pin_a_speed,(70 * duty) / 100)
-    pwm.setduty(pin_b_speed,(70 * duty) / 100)
+    pwm.setduty(pin_a_speed,(zpeed * duty) / 100)
+    pwm.setduty(pin_b_speed,(zpeed * duty) / 100)
     tmr.alarm(hvtimer2, 1000, tmr.ALARM_SINGLE, forward)
     --displayleft()
 end
@@ -70,30 +70,10 @@ end
 function backward()
     gpio.write(pin_a_dir,REV)
     gpio.write(pin_b_dir,REV)
-    pwm.setduty(pin_a_speed,(70 * duty) / 100)
-    pwm.setduty(pin_b_speed,(70 * duty) / 100)
+    pwm.setduty(pin_a_speed,(zpeed * duty) / 100)
+    pwm.setduty(pin_b_speed,(zpeed * duty) / 100)
     tmr.alarm(hvtimer3, 1000, tmr.ALARM_SINGLE, right)
     tmr.alarm(hvtimer4, 2000, tmr.ALARM_SINGLE, forward)
     displaybackward()
 end
 
-function lent()
-    gpio.write(pin_a_dir,FWD)
-    gpio.write(pin_b_dir,FWD)
-    pwm.setduty(pin_a_speed,(50 * duty) / 100)
-    pwm.setduty(pin_b_speed,(50 * duty) / 100)
-end
-
-function moyen()
-    gpio.write(pin_a_dir,FWD)
-    gpio.write(pin_b_dir,FWD)
-    pwm.setduty(pin_a_speed,(70 * duty) / 100)
-    pwm.setduty(pin_b_speed,(70 * duty) / 100)
-end
-
-function vite()
-    gpio.write(pin_a_dir,FWD)
-    gpio.write(pin_b_dir,FWD)
-    pwm.setduty(pin_a_speed,(100 * duty) / 100)
-    pwm.setduty(pin_b_speed,(100 * duty) / 100)
-end
