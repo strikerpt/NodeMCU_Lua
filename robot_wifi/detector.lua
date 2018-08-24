@@ -1,4 +1,4 @@
-print("\n detector.lua  hv180822.0918  \n")
+print("\n detector.lua  hv180824.1315  \n")
 
 -- timers personnelles
 detectortimer1=tmr.create() 
@@ -27,20 +27,19 @@ function zmesure_auto()
     else
         ztstop=tmr.now() 
         zlength=360*(ztstop-ztstart)/2/10000
+        if zlength>200 then zlength=0 end  
         print(zlength)
-        if zlength>200 then 
-            zlength=0 
-        end  
         if zlength<20 then 
         --t=math.random(1,2)
             --if t==1 then 
               -- left()
            -- else 
-              -- right()
+              right()
           --  end
             tmr.alarm(detectortimer1, 1000, tmr.ALARM_SINGLE, forward)
         end
     end
+    gpio.trig(zecho,"both",zmesure_auto)
 end
 
 function zmesure_manuel()
@@ -50,12 +49,9 @@ function zmesure_manuel()
         ztstop=tmr.now() 
         zlength=360*(ztstop-ztstart)/2/10000
         print(zlength)
-        if zlength>200 then 
-            zlength=0   
-        end 
+        if zlength>200 then zlength=0 end 
     end
+    gpio.trig(zecho,"both",zmesure_manuel)
 end
 
-gpio.trig(zecho,"both",zmesure_auto)
-gpio.trig(zecho,"both",zmesure_manuel)
 tmr.alarm(detectortimer2, 500, tmr.ALARM_AUTO, zmesure_pulse)

@@ -1,4 +1,4 @@
-print("\n motor.lua   hv180822.0902\n")
+print("\n motor.lua   hv180824.1320\n")
 
 --timers personnels
 hvtimer1=tmr.create()
@@ -77,3 +77,23 @@ function backward()
     --displaybackward()
 end
 
+function lent()
+    gpio.write(pin_a_dir,FWD)
+    gpio.write(pin_b_dir,FWD)
+    pwm.setduty(pin_a_speed,(50 * duty) / 100)
+    pwm.setduty(pin_b_speed,(50 * duty) / 100)
+end
+
+function moyen()
+    gpio.write(pin_a_dir,FWD)
+    gpio.write(pin_b_dir,FWD)
+    pwm.setduty(pin_a_speed,(70 * duty) / 100)
+    pwm.setduty(pin_b_speed,(70 * duty) / 100)
+end
+
+function vite()
+    gpio.write(pin_a_dir,FWD)
+    gpio.write(pin_b_dir,FWD)
+    pwm.setduty(pin_a_speed,(100 * duty) / 100)
+    pwm.setduty(pin_b_speed,(100 * duty) / 100)
+end

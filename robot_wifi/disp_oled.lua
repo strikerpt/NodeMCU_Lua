@@ -1,6 +1,6 @@
 -- Source: https://wiki.wemos.cc/products:d1_mini_shields:oled_shield
 -- font_10x20,font_6x10,font_7x13,font_8x13,font_9x15,font_chikita
-print("\n display_oled.lua   hv20180723.1332   \n")
+print("\n display_oled.lua   hv20180724.1323   \n")
 
 pin_sda = 12 
 pin_scl = 11 
@@ -20,10 +20,12 @@ function draw()
     disp:drawStr(0,0,oledline1)
     disp:drawStr(0,14,oledline2)
     disp:drawStr(0,28,oledline3)
-    disp:drawStr(0,42,oledline4)
-    disp:drawStr(0,70,oledline5)
+    disp:drawStr(0,70,oledline4)
 end
 
+ function drawip ()
+        disp:drawStr(0,42,oledline5)
+    end
 
 function dispOLED()
     disp:firstPage()
@@ -31,6 +33,18 @@ function dispOLED()
         draw()
     until disp:nextPage() == false
 end
+
+draw2 = {drawip}
+
+function demoLoop()
+  -- Start the draw loop with one of the demo functions
+  local f = table.remove(draw2,1)  
+  dispOLED(f)
+  table.insert(ddraw2,f)
+end
+
+demoLoop()
+tmr.alarm(4, 500, 1, demoLoop)
 
 init_OLED(pin_sda, pin_scl) --Run setting up
 

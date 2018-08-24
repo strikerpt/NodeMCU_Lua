@@ -1,6 +1,6 @@
 -- petit script de serveur Wifi pour piloter le robot
 
-print("\n robot_web.lua   hv180822.0912  \n")
+print("\n robot_web.lua   hv180824.1315  \n")
 
 srv = net.createServer(net.TCP)
 srv:listen(80, function(conn)
@@ -30,17 +30,17 @@ srv:listen(80, function(conn)
     elseif (_GET.pin == "STOP") then
         stop()
     elseif (_GET.pin == "LENT") then
-        
+        lent()
     elseif (_GET.pin == "MOYEN") then
-        
+        moyen()
     elseif (_GET.pin == "VITE") then
-        
+        vite()
     elseif (_GET.pin == "AUTO") then
-        
+        zmesure_manuel()
     elseif (_GET.pin == "MANUEL") then
-       
+       zmesure_auto()
     elseif (_GET.pin == "WIFI") then
-
+   
     end
     
 --Partie HTML et CSS pour la page web
