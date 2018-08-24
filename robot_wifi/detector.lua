@@ -21,24 +21,41 @@ function zmesure_pulse()
 end
 
 --Fonction pour mesurer la pulse et action si la pulsion est moins de 20cm
-function zmesure()
+function zmesure_auto()
     if gpio.read(zecho)==1 then 
         ztstart=tmr.now()
     else
         ztstop=tmr.now() 
         zlength=360*(ztstop-ztstart)/2/10000
         print(zlength)
-        if zlength>200 then zlength=0 end  
+        if zlength>200 then 
+            zlength=0 
+        end  
         if zlength<20 then 
         --t=math.random(1,2)
             --if t==1 then 
               -- left()
            -- else 
-               right()
+              -- right()
           --  end
             tmr.alarm(detectortimer1, 1000, tmr.ALARM_SINGLE, forward)
         end
     end
 end
-gpio.trig(zecho,"both",zmesure)
+
+function zmesure_manuel()
+    if gpio.read(zecho)==1 then 
+        ztstart=tmr.now()
+    else
+        ztstop=tmr.now() 
+        zlength=360*(ztstop-ztstart)/2/10000
+        print(zlength)
+        if zlength>200 then 
+            zlength=0   
+        end 
+    end
+end
+
+gpio.trig(zecho,"both",zmesure_auto)
+gpio.trig(zecho,"both",zmesure_manuel)
 tmr.alarm(detectortimer2, 500, tmr.ALARM_AUTO, zmesure_pulse)

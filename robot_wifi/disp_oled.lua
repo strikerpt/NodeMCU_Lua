@@ -35,9 +35,9 @@ end
 init_OLED(pin_sda, pin_scl) --Run setting up
 
 oledline1=     wifi.sta.getip()
-oledline2="FORWARD"
-oledline3="RIGHT"
-oledline4="1133"
+oledline2=""
+oledline3=""
+oledline4="Distance: "..zlength
 oledline5=""
 
 dispOLED()
