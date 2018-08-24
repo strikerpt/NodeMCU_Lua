@@ -1,4 +1,4 @@
-print("\n detector.lua  hv180824.1315  \n")
+print("\n detector.lua  hv180824.1601  \n")
 
 -- timers personnelles
 detectortimer1=tmr.create() 
@@ -21,37 +21,30 @@ function zmesure_pulse()
 end
 
 --Fonction pour mesurer la pulse et action si la pulsion est moins de 20cm
-function zmesure_auto()
+function zmesure()
     if gpio.read(zecho)==1 then 
         ztstart=tmr.now()
     else
         ztstop=tmr.now() 
-        zlength=360*(ztstop-ztstart)/2/10000
-        if zlength>200 then zlength=0 end  
-        print(zlength)
-        if zlength<20 then 
-        --t=math.random(1,2)
-            --if t==1 then 
-              -- left()
-           -- else 
-              right()
-          --  end
-            tmr.alarm(detectortimer1, 1000, tmr.ALARM_SINGLE, forward)
-        end
+            zlength=360*(ztstop-ztstart)/2/1000000
+            if zlength>50 then zlength=0 end
+            print(zlength)
+            if zlength<0.20 then
+                    right()
+                    tmr.alarm(detectortimer1, 1000, tmr.ALARM_SINGLE, forward)
+            end
+           
     end
-    gpio.trig(zecho,"both",zmesure_auto)
 end
-
-function zmesure_manuel()
-    if gpio.read(zecho)==1 then 
-        ztstart=tmr.now()
-    else
-        ztstop=tmr.now() 
-        zlength=360*(ztstop-ztstart)/2/10000
-        print(zlength)
-        if zlength>200 then zlength=0 end 
+--t=math.random(1,2)
+--if t==1 then 
+-- left()
+-- else 
+                --right()
+--  end
+               
+            --end   
     end
-    gpio.trig(zecho,"both",zmesure_manuel)
 end
-
+gpio.trig(zecho,"both",zmesure)
 tmr.alarm(detectortimer2, 500, tmr.ALARM_AUTO, zmesure_pulse)

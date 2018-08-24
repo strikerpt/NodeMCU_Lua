@@ -1,6 +1,6 @@
 -- Petit script pour connecter le NodeMCU sur un AP Wifi
 
-print("\n wifi_client.lua   hv180822.1011  \n")
+print("\n wifi_client.lua   hv180824.1345  \n")
 
 wifi.sta.disconnect()
 wifi.setmode(wifi.STATION)
@@ -14,5 +14,6 @@ tmr.alarm(wifitimer1, 1000, tmr.ALARM_AUTO , function()
    else
       print("Connected! IP: ",wifi.sta.getip())
       tmr.stop(wifitimer1)
+      oledline1=wifi.sta.getip()
    end
 end)

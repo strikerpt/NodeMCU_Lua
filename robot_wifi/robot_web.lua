@@ -1,6 +1,6 @@
 -- petit script de serveur Wifi pour piloter le robot
 
-print("\n robot_web.lua   hv180824.1315  \n")
+print("\n robot_web.lua   hv180824.1610   \n")
 
 srv = net.createServer(net.TCP)
 srv:listen(80, function(conn)
@@ -10,36 +10,36 @@ srv:listen(80, function(conn)
     if (method == nil) then
      _, _, method, path = string.find(request, "([A-Z]+) (.+) HTTP")
     end
-    local _GET = {}
+    local GET = {}
     if (vars ~= nil) then
       for k, v in string.gmatch(vars, "(%w+)=(%w+)&*") do
-        _GET[k] = v
+        GET[k] = v
         print(k..": "..v)
       end
     end
 
 --Réaction des boutons 
-    if (_GET.pin == "LEFT") then
+    if (GET.pin == "LEFT") then
         left()
-    elseif (_GET.pin == "RIGHT") then
+    elseif (GET.pin == "RIGHT") then
         right()
-    elseif (_GET.pin == "FORWARD") then 
+    elseif (GET.pin == "FORWARD") then 
         forward()
-    elseif (_GET.pin == "BACKWARD") then
+    elseif (GET.pin == "BACKWARD") then
         backward()
-    elseif (_GET.pin == "STOP") then
+    elseif (GET.pin == "STOP") then
         stop()
-    elseif (_GET.pin == "LENT") then
+    elseif (GET.pin == "LENT") then
         lent()
-    elseif (_GET.pin == "MOYEN") then
+    elseif (GET.pin == "MOYEN") then
         moyen()
-    elseif (_GET.pin == "VITE") then
+    elseif (GET.pin == "VITE") then
         vite()
-    elseif (_GET.pin == "AUTO") then
-        zmesure_manuel()
-    elseif (_GET.pin == "MANUEL") then
-       zmesure_auto()
-    elseif (_GET.pin == "WIFI") then
+    elseif (GET.pin == "AUTO") then
+        zlength
+    elseif (GET.pin == "MANUEL") then
+       zlength
+    elseif (GET.pin == "WIFI") then
    
     end
     

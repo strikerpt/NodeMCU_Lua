@@ -1,4 +1,4 @@
-print("\n motor.lua   hv180824.1320\n")
+print("\n motor.lua   hv180824.1610\n")
 
 --timers personnels
 hvtimer1=tmr.create()
@@ -46,7 +46,7 @@ end
 function stop()
     pwm.setduty(pin_a_speed,0)
     pwm.setduty(pin_b_speed,0)
-    --displaystop()
+    --oledline3="STOP"
 end
 
 function right()
@@ -55,7 +55,7 @@ function right()
     pwm.setduty(pin_a_speed,(70 * duty) / 100)
     pwm.setduty(pin_b_speed,(70 * duty) / 100)
     tmr.alarm(hvtimer1, 1000, tmr.ALARM_SINGLE, forward)
-    --draw()
+    --oledline3="RIGHT"
 end
 
 function left()
@@ -74,7 +74,7 @@ function backward()
     pwm.setduty(pin_b_speed,(70 * duty) / 100)
     tmr.alarm(hvtimer3, 1000, tmr.ALARM_SINGLE, right)
     tmr.alarm(hvtimer4, 2000, tmr.ALARM_SINGLE, forward)
-    --displaybackward()
+    displaybackward()
 end
 
 function lent()
