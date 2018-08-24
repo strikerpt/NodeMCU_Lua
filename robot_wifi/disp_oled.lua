@@ -24,6 +24,7 @@ function draw()
     disp:drawStr(0,70,oledline5)
 end
 
+
 function dispOLED()
     disp:firstPage()
     repeat
@@ -34,8 +35,8 @@ end
 init_OLED(pin_sda, pin_scl) --Run setting up
 
 oledline1=     wifi.sta.getip()
-oledline2=""
-oledline3=""
+oledline2="FORWARD"
+oledline3="RIGHT"
 oledline4="1133"
 oledline5=""
 
