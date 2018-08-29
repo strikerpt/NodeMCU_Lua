@@ -1,9 +1,7 @@
 -- Petit script pour afficher les infos actuel du WIFI
-print("\n wifi_info.lua   zf180823.1039   \n")
+print("\n wifi_info.lua   zf180824.2000   \n")
 
 local zmodewifi=wifi.getmode()
-
---wifi.NULLMODE, wifi.STATION, wifi.SOFTAP, wifi.STATIONAP
 
 if zmodewifi == wifi.NULLMODE then
     print("WIFI OFF")

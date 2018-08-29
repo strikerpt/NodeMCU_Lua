@@ -1,4 +1,4 @@
 -- Déconnecte le WIFI
-print("\n wifi_off.lua   zf180823.1039   \n")
+print("\n wifi_off.lua   zf180822.0959   \n")
 
-wifi.sta.disconnect()
+wifi.setmode(wifi.NULLMODE)

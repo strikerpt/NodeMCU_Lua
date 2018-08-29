@@ -1,6 +1,6 @@
 -- petit script de serveur Wifi pour piloter le robot
 
-print("\n robot_web.lua   hv180824.1655   \n")
+print("\n robot_web.lua   hv180829.1742   \n")
 
 srv = net.createServer(net.TCP)
 srv:listen(80, function(conn)
@@ -10,37 +10,41 @@ srv:listen(80, function(conn)
     if (method == nil) then
      _, _, method, path = string.find(request, "([A-Z]+) (.+) HTTP")
     end
-    local GET = {}
+    local _GET = {}
     if (vars ~= nil) then
       for k, v in string.gmatch(vars, "(%w+)=(%w+)&*") do
-        GET[k] = v
+        _GET[k] = v
         print(k..": "..v)
       end
     end
 
 --Réaction des boutons 
-    if (GET.pin == "LEFT") then
+    if (_GET.pin == "LEFT") then
         left()
-    elseif (GET.pin == "RIGHT") then
+    elseif (_GET.pin == "RIGHT") then
         right()
-    elseif (GET.pin == "FORWARD") then 
-        forward()
-    elseif (GET.pin == "BACKWARD") then
-        backward()
-    elseif (GET.pin == "STOP") then
-        stop()
-    elseif (GET.pin == "LENT") then
+    elseif (_GET.pin == "FORWARD") then 
+        forward()        
+    elseif (_GET.pin == "BACKWARD") then
+        backward()       
+    elseif (_GET.pin == "STOP") then
+        zauto=false
+        stop()        
+    elseif (_GET.pin == "LENT") then
         zpeed=50
-    elseif (GET.pin == "MOYEN") then
+        set_speed()
+    elseif (_GET.pin == "MOYEN") then
         zpeed=70
-    elseif (GET.pin == "VITE") then
+        set_speed()
+    elseif (_GET.pin == "VITE") then
        zpeed=100
-    elseif (GET.pin == "AUTO") then
-        zauto=true
-    elseif (GET.pin == "MANUEL") then
+       set_speed()
+    elseif (_GET.pin == "AUTO") then
+        zauto=true       
+    elseif (_GET.pin == "MANUEL") then
        zauto=false
-    elseif (GET.pin == "WIFI") then
-   
+    elseif (_GET.pin == "WIFI") then
+        dofile("wifi_cnf_start.lua")
     end
     
 --Partie HTML et CSS pour la page web
