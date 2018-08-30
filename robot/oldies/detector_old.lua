@@ -1,4 +1,4 @@
-print("\n detector.lua  hv180830.1429  \n")
+print("\n detector.lua  hv180829.1746  \n")
 
 -- timers personnelles
 detectortimer1=tmr.create() 
@@ -27,10 +27,9 @@ function zmesure()
     else
         ztstop=tmr.now() 
         zlength=math.floor(360*(ztstop-ztstart)/2/10000)/100
-        if zlength>5 then zlength=0 end
+        if zlength>5 then print(zlength) zlength=0 print("err length") end
         return_mesure()
      end
 end
 
 gpio.trig(zecho,"both",zmesure)
-
