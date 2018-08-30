@@ -1,11 +1,7 @@
-ESPlorer
-ESPlorer.Log
-ESPlorer.Log.lck
-init.lua.old
+ESPlorer*
 serial
 socket
 sys
-WIFILedOnOff_old.lua
 
 # Compiled Lua sources
 luac.out
