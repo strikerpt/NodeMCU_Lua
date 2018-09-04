@@ -1,4 +1,4 @@
-print("\n motor.lua   hv180830.1427\n")
+print("\n motor.lua   hv180904.1450 \n")
 
 --timers personnels
 hvtimer1=tmr.create()
@@ -52,6 +52,7 @@ function stop()
 end
 
 function right()
+print("right")
     tmr.unregister(hvtimer1)
     gpio.write(pin_a_dir,FWD)
     gpio.write(pin_b_dir,REV)
