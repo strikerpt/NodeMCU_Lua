@@ -1,6 +1,8 @@
 -- petit script de serveur Wifi pour piloter le robot
 
-print("\n robot_web.lua   hv180904.1513   \n")
+print("\n robot_web.lua   hv180904.1745   \n")
+
+webtimer1=tmr.create()
 
 srv = net.createServer(net.TCP)
 srv:listen(80, function(conn)
@@ -40,14 +42,19 @@ srv:listen(80, function(conn)
        zpeed=100
        set_speed()
     elseif (_GET.pin == "AUTO") then
+        tmr.alarm(webtimer1, 500, tmr.ALARM_SINGLE, function()
+        stop()
         oled_line1="Auto..."
         oled_line2=""
         oled_line3=""
         oled_line4=""
         oled_line5=""
         disp_oled()
-        zauto=true       
+        zauto=true
+        end)
     elseif (_GET.pin == "MANUEL") then
+        tmr.alarm(webtimer1, 500, tmr.ALARM_SINGLE, function()
+        stop()
         oled_line1="Manuel..."
         oled_line2=""
         oled_line3=""
@@ -55,10 +62,21 @@ srv:listen(80, function(conn)
         oled_line5=""
         disp_oled()
         zauto=false
+        end)
     elseif (_GET.pin == "WIFI") then
         dofile("wifi_cnf_start.lua")
     elseif (_GET.pin == "TEST1") then
-        dofile("start_job.lua")
+        tmr.alarm(webtimer1, 500, tmr.ALARM_SINGLE, function() dofile("start_job.lua") end)
+    elseif (_GET.pin == "TEST2") then
+        print("toto")
+        oled_line1="Restart..."
+        oled_line2=""
+        oled_line3=""
+        oled_line4=""
+        oled_line5=""
+        disp_oled()
+        zauto=false
+        tmr.alarm(webtimer1, 500, tmr.ALARM_SINGLE, node.restart)
     end
     
 --Partie HTML et CSS pour la page web
