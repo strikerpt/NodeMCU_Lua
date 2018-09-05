@@ -18,7 +18,7 @@ disp_oled()
 
 dofile("wifi_ap_start.lua")
 dofile("wifi_cli_start.lua")
-dofile("robot_web.lua")
+dofile("web_srv.lua")
 dofile("telnet_srv.lua")
 
 zpeed=50
