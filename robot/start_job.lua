@@ -22,9 +22,14 @@ zauto=true
 
 function return_mesure()
     print(zlength)
-    if zauto then 
+ if zauto then 
         if zlength<0.20 then
+          t=math.random(1,2)
+          if t==1 then
             right()
+          else
+            left()
+          end 
         end
     else
         oled_line1=zlength.." m"
