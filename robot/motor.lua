@@ -1,4 +1,4 @@
-print("\n motor.lua   hv180904.1805 \n")
+print("\n motor.lua   hv180905.0938 \n")
 
 --timers personnels
 hvtimer1=tmr.create()
@@ -13,7 +13,7 @@ pin_b_dir = 4
 FWD = gpio.LOW
 REV = gpio.HIGH
 duty = 1023
-turn_on = 250
+turn_on = 700
 
 --initialise moteur A
 gpio.mode(pin_a_speed,gpio.OUTPUT)
