@@ -1,6 +1,6 @@
 -- petit script pour la gestion du GET du serveur web
 
-print("\n web_get.lua   hv180906.0900   \n")
+print("\n web_get.lua   hv180906.1613   \n")
 
 webtimer1=tmr.create()
 
@@ -28,28 +28,30 @@ function web_get()
        set_speed()
     elseif (_GET.pin == "A") then
         tmr.alarm(webtimer1, 500, tmr.ALARM_SINGLE, function()
-        stop()
-        oled_line1="Auto..."
-        oled_line2=""
-        oled_line3=""
-        oled_line4=""
-        oled_line5=""
-        disp_oled()
-        zauto=true
+            stop()
+            oled_line1="Auto..."
+            oled_line2=""
+            oled_line3=""
+            oled_line4=""
+            oled_line5=""
+            disp_oled()
+            zauto=true
         end)
     elseif (_GET.pin == "ML") then
         tmr.alarm(webtimer1, 500, tmr.ALARM_SINGLE, function()
-        stop()
-        oled_line1="Manuel..."
-        oled_line2=""
-        oled_line3=""
-        oled_line4=""
-        oled_line5=""
-        disp_oled()
-        zauto=false
+            stop()
+            oled_line1="Manuel..."
+            oled_line2=""
+            oled_line3=""
+            oled_line4=""
+            oled_line5=""
+            disp_oled()
+            zauto=false
         end)
     elseif (_GET.pin == "WIFI") then
-        dofile("wifi_cnf_start.lua")
+        tmr.alarm(webtimer1, 2000, tmr.ALARM_SINGLE, function()
+            dofile("wifi_cnf_start.lua")
+        end)
     elseif (_GET.pin == "T1") then
         tmr.alarm(webtimer1, 500, tmr.ALARM_SINGLE, function() dofile("start_job.lua") end)
     elseif (_GET.pin == "T2") then

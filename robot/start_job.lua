@@ -1,4 +1,4 @@
-print("\n start_job.lua hv180906.0903 \n")
+print("\n start_job.lua hv180906.1448 \n")
 
 jobtimer1=tmr.create()
 
@@ -21,6 +21,8 @@ zauto=true
 
 function return_mesure()
     print(zlength)
+    print("RAM: "..node.heap())
+
  if zauto then 
         if zlength<0.20 then
           t=math.random(1,2)
