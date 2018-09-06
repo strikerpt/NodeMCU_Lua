@@ -1,4 +1,4 @@
-print("\n start_job.lua hv180906.1448 \n")
+print("\n start_job.lua hv180906.1648 \n")
 
 jobtimer1=tmr.create()
 
@@ -18,6 +18,14 @@ disp_oled()
 
 zpeed=50
 zauto=true
+
+function mesurewhenmanual()
+    if zauto then 
+        tmr.stop(jobtimer1)
+    else 
+        tmr.alarm(jobtimer1, 600, tmr.ALARM_AUTO, start_mesure)
+    end
+end
 
 function return_mesure()
     print(zlength)
@@ -44,8 +52,9 @@ end
 --dofile("motor.lua")
 dofile("detector.lua")
 
+mesurewhenmanual()
 forward()
-tmr.alarm(jobtimer1, 600, tmr.ALARM_AUTO, start_mesure)
+--tmr.alarm(jobtimer1, 600, tmr.ALARM_AUTO, start_mesure)
 
 
 

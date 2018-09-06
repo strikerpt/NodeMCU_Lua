@@ -3,6 +3,7 @@ print("\n motor.lua   hv180906.1524 \n")
 --timers personnels
 hvtimer1=tmr.create()
 hvtimer2=tmr.create()
+motortimer1=tmr.create()
 
 --parametres pour les moteurs
 pin_a_speed = 1
@@ -47,7 +48,6 @@ end
 function stop()
     pwm.setduty(pin_a_speed,0)
     pwm.setduty(pin_b_speed,0)
---    tmr.stop(jobtimer1)
 end
 
 function right()
