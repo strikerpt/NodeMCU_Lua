@@ -1,7 +1,6 @@
-print("\n start_job.lua hv180905.1639 \n")
+print("\n start_job.lua hv180906.0903 \n")
 
 jobtimer1=tmr.create()
-jobtimer2=tmr.create()
 
 oled_line1="Job Start..."
 oled_line2=""

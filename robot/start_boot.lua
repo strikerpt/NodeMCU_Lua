@@ -1,5 +1,5 @@
 -- Scripts à charger au moment du boot afin de pouvoir travailler avec le robot à distance
-print("\n start_boot.lua zf180904.1705 \n")
+print("\n start_boot.lua zf180905.1025 \n")
 
 dofile("disp_oled.lua")
 oled_line1="RESET"

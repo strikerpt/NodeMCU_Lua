@@ -1,8 +1,4 @@
-print("\n detector.lua  hv180830.1429  \n")
-
--- timers personnelles
-detectortimer1=tmr.create() 
-detectortimer2=tmr.create()
+print("\n detector.lua  hv180906.0906  \n")
 
 --Parametres pour le module ultra son 
 ztrig=5

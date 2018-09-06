@@ -1,9 +1,8 @@
-print("\n motor.lua   hv180905.0938 \n")
+print("\n motor.lua   hv180906.0902 \n")
 
 --timers personnels
 hvtimer1=tmr.create()
 hvtimer2=tmr.create()
-hvtimer3=tmr.create()
 
 --parametres pour les moteurs
 pin_a_speed = 1
@@ -21,7 +20,6 @@ gpio.write(pin_a_speed,gpio.LOW)
 pwm.setup(pin_a_speed,50,duty) --PWM 50Hz, Duty 1023
 pwm.start(pin_a_speed)
 pwm.setduty(pin_a_speed,0)
-
 gpio.mode(pin_a_dir,gpio.OUTPUT)
 gpio.write(pin_a_dir,FWD)
 
@@ -31,7 +29,6 @@ gpio.write(pin_b_speed,gpio.LOW)
 pwm.setup(pin_b_speed,50,duty) --PWM 50Hz, Duty 1023
 pwm.start(pin_b_speed)
 pwm.setduty(pin_b_speed,0)
-
 gpio.mode(pin_b_dir,gpio.OUTPUT)
 gpio.write(pin_b_dir,FWD)
 
@@ -53,7 +50,6 @@ function stop()
 end
 
 function right()
-print("right")
     tmr.unregister(hvtimer1)
     gpio.write(pin_a_dir,FWD)
     gpio.write(pin_b_dir,REV)
@@ -83,5 +79,5 @@ function backward()
     gpio.write(pin_b_dir,REV)
     pwm.setduty(pin_a_speed,(zpeed * duty) / 100)
     pwm.setduty(pin_b_speed,(zpeed * duty) / 100)
-    tmr.alarm(hvtimer3, 1000, tmr.ALARM_SINGLE, right)
+    tmr.alarm(hvtimer2, 1000, tmr.ALARM_SINGLE, right)
 end
