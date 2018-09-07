@@ -1,4 +1,4 @@
-print("\n start_job.lua hv180907.0928 \n")
+print("\n start_job.lua hv180907.1136 \n")
 
 jobtimer1=tmr.create()
 
@@ -25,11 +25,14 @@ function return_mesure()
     
     if zauto then 
         if zlength < 0.20 then
-            if math.random(1,2) == 1 then
-                right()
-            else
-                left()
-            end 
+            backward()
+            tmr.alarm(jobtimer2, 200, tmr.ALARM_SINGLE, function()
+                if math.random(1,2) == 1 then
+                    right()
+                else
+                    left()
+                end 
+            end)
         end
         tmr.alarm(jobtimer1, 200, tmr.ALARM_SINGLE, start_mesure)
     else
