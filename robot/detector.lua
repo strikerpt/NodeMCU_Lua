@@ -29,4 +29,3 @@ function zmesure()
 end
 
 gpio.trig(zecho,"both",zmesure)
-

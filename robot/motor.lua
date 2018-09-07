@@ -1,4 +1,4 @@
-print("\n motor.lua   hv180906.1524 \n")
+print("\n motor.lua   hv180907.1437 \n")
 
 --timers personnels
 hvtimer1=tmr.create()
@@ -13,7 +13,6 @@ pin_b_dir = 4
 FWD = gpio.LOW
 REV = gpio.HIGH
 duty = 1023
-turn_on = 700
 
 --initialise moteur A
 gpio.mode(pin_a_speed,gpio.OUTPUT)
@@ -59,11 +58,11 @@ function right()
     gpio.write(pin_b_dir,REV)
     pwm.setduty(pin_a_speed,(zpeed * duty) / 100)
     pwm.setduty(pin_b_speed,(zpeed * duty) / 100)
-    if zauto then 
+--[[    if zauto then 
         tmr.alarm(hvtimer1, turn_on, tmr.ALARM_SINGLE, forward)
     else
         tmr.alarm(hvtimer1, turn_on, tmr.ALARM_SINGLE, stop)
-    end
+    end]]
 end
 
 function left()
@@ -72,11 +71,11 @@ function left()
     gpio.write(pin_b_dir,FWD)
     pwm.setduty(pin_a_speed,(zpeed * duty) / 100)
     pwm.setduty(pin_b_speed,(zpeed * duty) / 100)
-    if zauto then 
+    --[[if zauto then 
         tmr.alarm(hvtimer1, turn_on, tmr.ALARM_SINGLE, forward)
     else
         tmr.alarm(hvtimer1, turn_on, tmr.ALARM_SINGLE, stop)
-    end
+    end]]
 end
 
 function backward()
@@ -84,5 +83,5 @@ function backward()
     gpio.write(pin_b_dir,REV)
     pwm.setduty(pin_a_speed,(zpeed * duty) / 100)
     pwm.setduty(pin_b_speed,(zpeed * duty) / 100)
-    tmr.alarm(hvtimer2, 1000, tmr.ALARM_SINGLE, right)
+--    tmr.alarm(hvtimer2, 1000, tmr.ALARM_SINGLE, right)
 end

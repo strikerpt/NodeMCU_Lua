@@ -1,17 +1,28 @@
 -- petit script pour la gestion du GET du serveur web
 
-print("\n web_get.lua   hv180907.0928   \n")
+print("\n web_get.lua   hv180907.1439  \n")
 
 webtimer1=tmr.create()
 webtimer2=tmr.create()
+webtimer3=tmr.create()
+webtimer4=tmr.create()
 
+function forward_stop()
+        if zauto then 
+            tmr.alarm(webtimer3, turn_on, tmr.ALARM_SINGLE, forward)
+        else
+            tmr.alarm(webtimer3, turn_on, tmr.ALARM_SINGLE, stop)
+        end
+end
 
 --Réaction des boutons 
 function web_get()
     if (_GET.pin == "L") then
         left()
+        forward_stop()
     elseif (_GET.pin == "R") then
         right()
+        forward_stop()
     elseif (_GET.pin == "F") then 
         forward()        
     elseif (_GET.pin == "B") then
@@ -19,13 +30,13 @@ function web_get()
     elseif (_GET.pin == "S") then
         zauto=false
         stop()        
-    elseif (_GET.pin == "LT") then
+    elseif (_GET.pin == "SL") then
         zpeed=50
         set_speed()
-    elseif (_GET.pin == "M") then
+    elseif (_GET.pin == "SM") then
         zpeed=70
         set_speed()
-    elseif (_GET.pin == "V") then
+    elseif (_GET.pin == "SF") then
        zpeed=100
        set_speed()
     elseif (_GET.pin == "A") then
@@ -41,10 +52,6 @@ function web_get()
             oled_line1="Manuel..."   oled_line2=""   oled_line3=""   oled_line4=""   oled_line5=""
             disp_oled()
             zauto=false 
-        end)
-    elseif (_GET.pin == "WIFI") then
-        tmr.alarm(webtimer1, 2000, tmr.ALARM_SINGLE, function()
-            dofile("wifi_cnf_start.lua")
         end)
     elseif (_GET.pin == "T1") then
         tmr.alarm(webtimer1, 500, tmr.ALARM_SINGLE, function()

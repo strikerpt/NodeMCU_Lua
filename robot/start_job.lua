@@ -1,6 +1,7 @@
-print("\n start_job.lua hv180907.1136 \n")
+print("\n start_job.lua hv180907.1523 \n")
 
 jobtimer1=tmr.create()
+jobtimer2=tmr.create()
 
 oled_line1="Job Start..."
 oled_line2=""
@@ -17,7 +18,7 @@ oled_line5=""
 disp_oled()
 
 zpeed=50
-zauto=true
+turn_on = 700
 
 function return_mesure()
     print(zlength)
@@ -31,10 +32,11 @@ function return_mesure()
                     right()
                 else
                     left()
-                end 
+                end
+                tmr.alarm(jobtimer2, turn_on, tmr.ALARM_SINGLE, forward)
             end)
         end
-        tmr.alarm(jobtimer1, 200, tmr.ALARM_SINGLE, start_mesure)
+        tmr.alarm(jobtimer1, 300, tmr.ALARM_SINGLE, start_mesure)
     else
         if zmeter then
             oled_line1=zlength.." m"
@@ -47,9 +49,7 @@ function return_mesure()
 end
 
 dofile("detector.lua")
-tmr.alarm(jobtimer1, 200, tmr.ALARM_SINGLE, start_mesure)
+zauto=true
+tmr.alarm(jobtimer1, 300, tmr.ALARM_SINGLE, start_mesure)
 forward()
-
-
-
 
