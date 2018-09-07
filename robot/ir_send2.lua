@@ -1,4 +1,5 @@
 -- Petit script pour des codes NEC à la LED IR
+-- source: https://github.com/nodemcu/nodemcu-firmware/blob/master/lua_examples/irsend.lua
 
 print("\n ir_send2.lua  zf180907.1418  \n")
 
