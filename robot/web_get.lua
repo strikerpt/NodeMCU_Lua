@@ -1,6 +1,6 @@
 -- petit script pour la gestion du GET du serveur web
 
-print("\n web_get.lua   hv180907.1439  \n")
+print("\n web_get.lua   hv180907.1557  \n")
 
 webtimer1=tmr.create()
 webtimer2=tmr.create()
@@ -45,6 +45,7 @@ function web_get()
             oled_line1="Auto..."   oled_line2=""   oled_line3=""   oled_line4=""   oled_line5=""
             disp_oled()
             zauto=true
+            tmr.alarm(webtimer1, 500, tmr.ALARM_SINGLE, start_mesure)
         end)
     elseif (_GET.pin == "ML") then
         tmr.alarm(webtimer1, 500, tmr.ALARM_SINGLE, function()
